@@ -127,6 +127,15 @@ public class playerController : MonoBehaviour
             _GameController.Fall();
         }
 
+
+        if(col.gameObject.tag == "Arrow")
+        {
+            col.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            col.gameObject.GetComponent<Animator>().enabled = true;
+            print("caminho indicado");
+            
+        }
+
     }
 
     //funções criadas pelo programador

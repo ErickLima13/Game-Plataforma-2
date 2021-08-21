@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
 {
     public gameState currentState;
     public GameObject painelTitulo, painelGameOver, painelEnd;
+  
 
     public Transform playerTransform;
     private Camera cam;
@@ -55,6 +56,8 @@ public class GameController : MonoBehaviour
         painelTitulo.SetActive(true);
 
         heartController();
+
+        
 
     }
 
@@ -209,6 +212,7 @@ public class GameController : MonoBehaviour
         }
     }
 
+    
 
 
 

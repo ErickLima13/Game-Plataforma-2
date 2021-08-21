@@ -9,6 +9,7 @@ TagManager:
   - damage
   - Flag
   - Abismo
+  - Arrow
   layers:
   - Default
   - TransparentFX
