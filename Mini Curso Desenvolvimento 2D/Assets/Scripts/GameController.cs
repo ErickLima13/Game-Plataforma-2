@@ -17,8 +17,8 @@ public enum gameState
 public class GameController : MonoBehaviour
 {
     public gameState currentState;
-    public GameObject painelTitulo, painelGameOver, painelEnd;
-  
+    public GameObject painelTitulo, painelGameOver, painelEnd, TouchControls;
+    
 
     public Transform playerTransform;
     private Camera cam;
@@ -59,21 +59,24 @@ public class GameController : MonoBehaviour
 
         
 
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(currentState == gameState.TITULO && Input.GetKeyDown(KeyCode.Space))
+        if(currentState == gameState.TITULO && Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0))
         {
             currentState = gameState.GAMEPLAY;
             painelTitulo.SetActive(false);
+            TouchControls.SetActive(true);
         }
-        else if(currentState == gameState.GAMEOVER && Input.GetKeyDown(KeyCode.Space))
+        else if(currentState == gameState.GAMEOVER && Input.GetKeyDown(KeyCode.Space) )
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        else if(currentState == gameState.END && Input.GetKeyDown(KeyCode.Space))
+        else if(currentState == gameState.END && Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.Space) )
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
@@ -212,7 +215,12 @@ public class GameController : MonoBehaviour
         }
     }
 
-    
+    public void Mute()
+    {
+        sfxSource.mute = true;
+        musicSource.mute = true;
+
+    }
 
 
 

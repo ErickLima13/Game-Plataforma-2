@@ -98,6 +98,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -181,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8852869f501605f409620de083501262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1
   isLookLeft: 1
   hitbox: {fileID: 6131847102290198742}
   Coin: {fileID: 4049099081895790088, guid: 022191e385a558e499e9a9f0183c324c, type: 3}

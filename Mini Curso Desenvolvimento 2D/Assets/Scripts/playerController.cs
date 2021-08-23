@@ -13,15 +13,18 @@ public class playerController : MonoBehaviour
 
     [Header("Atributtes")] //Cabeçalho
     public float  speed;
+    public float movement;
     public float jumpForce;
     public int maxHp;
     public bool isLookLeft;
+    public bool isMobile;
 
     [Header("Ground Check")]
     public Transform groundCheck;
     private bool isGrounded;
 
     private bool isAttack;
+
 
     public Transform mao;
     public GameObject hitBoxPrefab;
@@ -54,18 +57,22 @@ public class playerController : MonoBehaviour
             return;
         }
 
-        float h = Input.GetAxisRaw("Horizontal"); //recebe os input horizontal (já pré configurados na unity)
+        if (!isMobile)
+        {
+            movement = Input.GetAxisRaw("Horizontal"); //recebe os input horizontal (já pré configurados na unity)
+        }
+        
 
         if (isAttack && isGrounded) // impede de dar pulos seguidos e atacar andando
         {
-            h = 0; // para o player 
+            movement = 0; // para o player 
         }
 
-        if (h > 0 && isLookLeft) //verifico se  h é maior que 0 e se isLookLeft é true/ move para Direita
+        if (movement > 0 && isLookLeft) //verifico se  h é maior que 0 e se isLookLeft é true/ move para Direita
         {
             Flip(); // chamando o metodo 
         }
-        else if(h < 0 && !isLookLeft) //verifico se  h é menor que 0 e se isLookLeft é false /move para Esquerda
+        else if(movement < 0 && !isLookLeft) //verifico se  h é menor que 0 e se isLookLeft é false /move para Esquerda
         {
             Flip(); // chamando o metodo 
         }
@@ -73,7 +80,7 @@ public class playerController : MonoBehaviour
 
         float speedY = playerRb.velocity.y; //valor da velocidade y do player
 
-        playerRb.velocity = new Vector2(h * speed, speedY); // move o player
+        playerRb.velocity = new Vector2(movement * speed, speedY); // move o player
 
         if (Input.GetButtonDown("Jump") && isGrounded) // se for pressionado o botão Jump (Space) e isGrounded for true
         {
@@ -81,14 +88,14 @@ public class playerController : MonoBehaviour
             playerRb.AddForce(new Vector2(0, jumpForce)); // faz o player pular
         }
 
-        if (Input.GetButtonDown("Fire1") && !isAttack) // se for pressionado o botão Fire1 (esquerdo mouse) e isAttack for false
+        if (Input.GetButtonDown("Fire1") && !isAttack && !isMobile) // se for pressionado o botão Fire1 (esquerdo mouse) e isAttack for false
         {
             isAttack = true;
             _GameController.playSFX(_GameController.sfxAttack, 0.3f); // chama o som do ataque 
             playerAnimator.SetTrigger("attack"); // ativa  o trigger (gatilho) do animator 
         }
 
-        playerAnimator.SetInteger("h", (int) h ); // faz o parametro do animator h receber o valor da variavel h convertida com int 
+        playerAnimator.SetInteger("h", (int) movement ); // faz o parametro do animator h receber o valor da variavel h convertida com int 
        
         playerAnimator.SetFloat("speedY", speedY); // da o valor da variavel speedY pro parametro speedY do animator
         playerAnimator.SetBool("isAttack", isAttack); // da o valor de true a booleana do animator e a variavel  
@@ -182,27 +189,6 @@ public class playerController : MonoBehaviour
 
         this.gameObject.layer = LayerMask.NameToLayer("Player");
         playerSr.color = Color.white;
-
-    }
-
-    public void LeftBt()
-    {
-
-        if (!isLookLeft)
-        {
-            print("esquerda");
-            Flip();
-        }
-
-    }
-
-    public void RightBt()
-    {
-        if (isLookLeft)
-        {
-            print("direita");
-            Flip();
-        }
 
     }
 

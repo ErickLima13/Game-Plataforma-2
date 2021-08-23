@@ -98,6 +98,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -166,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.3
-  timeToWalk: 3
+  timeToWalk: 5
   hitBox: {fileID: 5926731754409805304}
   Coin: {fileID: 4049099081895790088, guid: 022191e385a558e499e9a9f0183c324c, type: 3}
   drop: {fileID: 5926731755095449555}
