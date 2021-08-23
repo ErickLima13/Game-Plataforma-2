@@ -184,4 +184,44 @@ public class playerController : MonoBehaviour
         playerSr.color = Color.white;
 
     }
+
+    public void LeftBt()
+    {
+
+        if (!isLookLeft)
+        {
+            print("esquerda");
+            Flip();
+        }
+
+    }
+
+    public void RightBt()
+    {
+        if (isLookLeft)
+        {
+            print("direita");
+            Flip();
+        }
+
+    }
+
+    public void JumpBt()
+    {
+        if (isGrounded) // se isGrounded for true
+        {
+            _GameController.playSFX(_GameController.sfxJump, 0.1f); // chama o som do pulo 
+            playerRb.AddForce(new Vector2(0, jumpForce)); // faz o player pular
+        }
+    }
+
+    public void AttackBt()
+    {
+        if (!isAttack) // se isAttack for false
+        {
+            isAttack = true;
+            _GameController.playSFX(_GameController.sfxAttack, 0.3f); // chama o som do ataque 
+            playerAnimator.SetTrigger("attack"); // ativa  o trigger (gatilho) do animator 
+        }
+    }
 }
