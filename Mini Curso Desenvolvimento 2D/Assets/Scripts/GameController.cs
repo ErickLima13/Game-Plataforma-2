@@ -66,17 +66,17 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentState == gameState.TITULO && Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0))
+        if(currentState == gameState.TITULO && Input.GetKeyDown(KeyCode.Space))
         {
             currentState = gameState.GAMEPLAY;
             painelTitulo.SetActive(false);
-            TouchControls.SetActive(true);
+            //TouchControls.SetActive(true);
         }
         else if(currentState == gameState.GAMEOVER && Input.GetKeyDown(KeyCode.Space) )
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        else if(currentState == gameState.END && Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.Space) )
+        else if(currentState == gameState.END &&  Input.GetKeyDown(KeyCode.Space) )
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
